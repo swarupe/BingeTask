@@ -1,0 +1,25 @@
+<div class="conatiner">
+  <div class="row">
+    <div class="col-md-3"  *ngFor="let m of MenuItems">
+      <div class="card mb-3 shadow">
+      <h4 class="card-title text-center">
+        <b>{{m.name | titlecase}}</b>
+      </h4>
+        <img class="card-img" src="{{m.poster_url}}" alt="{{m.name | titlecase}}">
+        <div class="card-body">
+          <p><b>Food Category: </b> {{m.category | titlecase}}</p>
+          <p><b>Description: </b> {{m.desc | titlecase}}</p>
+          <p><b>Price: </b>₹ {{ m.price * 1.00 * (100.00 + m.gst) / 100.00 }}</p>
+            <p *ngIf="m.veg == 0; else elseBlock">Veg</p>
+            <ng-template #elseBlock>Non-Veg</ng-template>
+          <p><b>Available: </b>
+            <mat-slide-toggle
+            class="example-margin"
+            checked = "{{ m.switch == 1 ? 'true' : 'false' }}">
+        </mat-slide-toggle>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
